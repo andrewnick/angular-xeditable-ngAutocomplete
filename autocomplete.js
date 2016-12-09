@@ -6,7 +6,7 @@ angular.module('xeditable').directive('editableNgAutocomplete', ['editableDirect
   function(editableDirectiveFactory, editableUtils) {
     var dir = editableDirectiveFactory({
         directiveName: 'editableNgAutocomplete',
-        inputTpl: '<input ng-autocomplete style="width: 100%"></input>',
+        inputTpl: '<input ng-autocomplete></input>',
         render: function () {
             this.parent.render.call(this);
         }
