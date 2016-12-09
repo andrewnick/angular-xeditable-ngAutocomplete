@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Angular autocomplete</title>
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://vitalets.github.io/angular-xeditable/dist/css/xeditable.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.1.1/ng-tags-input.min.css">
+		<link rel="stylesheet" href="app.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="xeditable.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.1.1/ng-tags-input.min.js"></script>
+
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCVVpPKbEA5bRR0yo7HXftT7byqGG1z3_c&libraries=places"></script>
+
+		<script src="ngAutocomplete.js"></script>
+		<script src="autocomplete.js"></script>
+		<script src="app.js"></script>
+	</head>
+
+	<body>
+		<div ng-app="app" ng-controller="AutoCompleteCtrl">
+
+			<form data-editable-form name="ngAutocompleteForm" class='section' onaftersave="saveAddress()">
+				<span ng-show="!ngAutocompleteForm.$visible">Details {{vm.address.formattedAddress}}</span>
+			    <div editable-ng-autocomplete="vm.address.formattedAddress"
+			    	data-e-form="ngAutocompleteForm" 
+			     	data-e-ng-model="vm.address"
+			      	data-e-details="vm.address" e-id="address" e-name="address" type="text"></div>
+
+			    <div ng-messages for="formAddress['address'].$error" class="help-block error">
+			        <div ng-message when="required">Please provide your address</div>
+			        <div ng-message when="parse">Please select one of the suggested options</div>
+			    </div>
+
+				<br/>
+	
+				<div class="buttons">
+
+				  <button type="button" class="btn btn-default" ng-click="ngAutocompleteForm.$show()" ng-show="!ngAutocompleteForm.$visible">
+				    Edit
+				  </button>
+
+				  <span ng-show="ngAutocompleteForm.$visible">
+				    <br/>
+				    <button type="submit" class="btn btn-primary" ng-disabled="ngAutocompleteForm.$waiting">
+				      Save
+				    </button>
+				    <button type="button" class="btn btn-default" ng-disabled="ngAutocompleteForm.$waiting" ng-click="ngAutocompleteForm.$cancel()">
+				      Cancel
+				    </button>
+				  </span>
+				</div>
+			</form>
+			
+			<p>Full Address: {{vm.address}}</p>
+			
+		</div>
+	</body>
+
+</html>	
+
